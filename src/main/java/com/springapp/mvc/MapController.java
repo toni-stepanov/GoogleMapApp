@@ -1,5 +1,6 @@
 package com.springapp.mvc;
 
+import entity.Point;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -25,9 +26,14 @@ public class MapController {
 
     @RequestMapping(value = "/map", method = RequestMethod.POST)
     @ResponseBody
-    public String map(ModelMap model, @RequestParam String pointName, @RequestParam String pointDesc) {
-        System.out.println(pointDesc + " : " + pointName);
-        return "1";
+    public Object map(ModelMap model, @RequestParam String pointName, @RequestParam String pointDesc) {
+        System.out.println(pointName + " : " + pointDesc);
+        //search in api
+        Point point = new Point();
+        point.setDescription(pointName);
+        point.setLatitude(47.163);
+        point.setLongitude(10.644);
+        return point;
     }
 
 

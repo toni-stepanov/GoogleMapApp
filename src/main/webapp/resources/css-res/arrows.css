@@ -1,8 +1,0 @@
-.not-active-arrow {
-    pointer-events: none;
-    cursor: default;
-    color: #737373;
-}
-.active-arrow{
-    color: #080808;
-}
