@@ -1,6 +1,7 @@
-package com.springapp.mvc;
+package googlemap.spring.app.controller;
 
-import entity.Point;
+import googlemap.spring.app.entity.Point;
+import googlemap.spring.app.service.PointService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Random;
+
 @Controller
 @PropertySource("classpath:settings.txt")
 public class MapController {
@@ -18,7 +21,10 @@ public class MapController {
     @Autowired
     Environment environment;
 
-    @RequestMapping(value = "/map", method = RequestMethod.GET)
+    @Autowired
+    PointService pointService;
+
+    @RequestMapping(value = "/mapgoogle", method = RequestMethod.GET)
     public String start(ModelMap model) {
         model.addAttribute("apiKey", environment.getProperty("apiKey"));
         return "map";
@@ -27,13 +33,14 @@ public class MapController {
     @RequestMapping(value = "/map", method = RequestMethod.POST)
     @ResponseBody
     public Object map(ModelMap model, @RequestParam String pointName, @RequestParam String pointDesc) {
-        System.out.println(pointName + " : " + pointDesc);
         //search in api
         Point point = new Point();
         point.setDescription(pointName);
-        point.setLatitude(47.163);
-        point.setLongitude(10.644);
-        return point;
+        Random random = new Random();
+        Integer rnd = random.nextInt(100);
+        point.setLatitude(rnd);
+        point.setLongitude(rnd + random.nextInt(30));
+        return pointService.save(point);
     }
 
 

@@ -32,7 +32,7 @@ public class AppTests {
 
     @Test
     public void simple() throws Exception {
-        mockMvc.perform(get("/"))
+        mockMvc.perform(get("/mapgoogle"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("map"));
     }

@@ -24,9 +24,9 @@ function initMap() {
 
 }
 
-function newPoint(lat, long, description) {
+function addPoint(lat, long, description) {
     var newLatLng = {lat: lat, lng: long};
-    var contentString = '<b>'+description+'</b>';
+    var contentString = '<b>' + description + '</b>';
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
@@ -37,7 +37,7 @@ function newPoint(lat, long, description) {
         label: 'B'
     });
 
-    marker.addListener('click', function (){
+    marker.addListener('click', function () {
         infowindow.open(map, marker)
     })
 
@@ -48,22 +48,17 @@ $(document).ready(function () {
     var name = $("#name");
     var desc = $("#desc");
     add_button.click(function (e) {
-        alert(name.length);
-        if(name === "" || desc === ""){
-            alert("Hui");
-        } else{
-            $.ajax({
-                type: 'POST',
-                url: '/map',
-                data: ({
-                    pointName: name.val(),
-                    pointDesc: desc.val()
-                }),
-                success: function (data) {
-                    newPoint(data.latitude, data.longitude, data.description)
-                }
+        $.ajax({
+            type: 'POST',
+            url: '/add',
+            data: ({
+                pointName: name.val(),
+                pointDesc: desc.val()
+            }),
+            success: function (data) {
+                addPoint(data.latitude, data.longitude, data.description)
+            }
 
-            });
-        }
+        });
     });
 });

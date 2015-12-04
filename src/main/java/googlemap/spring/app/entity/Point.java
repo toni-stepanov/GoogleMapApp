@@ -1,10 +1,16 @@
-package entity;
+package googlemap.spring.app.entity;
 
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 
+@Entity
 public class Point implements Serializable{
 
+    @Id
+    @GeneratedValue
     private int id;
 
     private String description;
