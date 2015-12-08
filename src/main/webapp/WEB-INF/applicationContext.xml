@@ -8,12 +8,12 @@
 
     <import resource="db_settings.xml"/>
 
-    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="jpaTransactionManager">
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="transactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
     <jpa:repositories base-package="googlemap.spring.app.repository"/>
 
-    <tx:annotation-driven transaction-manager="jpaTransactionManager"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 </beans>

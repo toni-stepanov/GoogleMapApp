@@ -1,1 +1,2 @@
-apiKey=AIzaSyCe2SxllPETBnD55HsloDezdUM6hHLp3qY
+mapKey=AIzaSyCe2SxllPETBnD55HsloDezdUM6hHLp3qY
+geocodingRequest=https://maps.googleapis.com/maps/api/geocode/json?address=DESCRIPTION&Key=AIzaSyC4ZqJ4FmK0DdbQDVTvJM8KMqygdRpIcCI

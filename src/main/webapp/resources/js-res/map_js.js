@@ -6,7 +6,7 @@ function initMap() {
         center: myLatLng,
         zoom: 8
     });
-    var contentString = '<b>Munich</b>';
+    var contentString = 'Munich';
 
     var infowindow = new google.maps.InfoWindow({
         content: contentString
@@ -15,7 +15,7 @@ function initMap() {
     var marker = new google.maps.Marker({
         position: myLatLng,
         map: map,
-        label: 'A'
+        label: contentString
     });
 
     marker.addListener('click', function () {
@@ -26,7 +26,7 @@ function initMap() {
 
 function addPoint(lat, long, description) {
     var newLatLng = {lat: lat, lng: long};
-    var contentString = '<b>' + description + '</b>';
+    var contentString = description;
     var infowindow = new google.maps.InfoWindow({
         content: contentString
     });
@@ -34,13 +34,12 @@ function addPoint(lat, long, description) {
     var marker = new google.maps.Marker({
         position: newLatLng,
         map: map,
-        label: 'B'
+        label: contentString
     });
 
     marker.addListener('click', function () {
         infowindow.open(map, marker)
     })
-
 }
 
 $(document).ready(function () {

@@ -19,6 +19,8 @@ public class Point implements Serializable{
 
     private double longitude;
 
+    private String address;
+
     public int getId() {
         return id;
     }
@@ -49,5 +51,24 @@ public class Point implements Serializable{
 
     public void setLongitude(double longitude) {
         this.longitude = longitude;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Point{" +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
