@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @Transactional
 public class PointService {
@@ -16,4 +18,13 @@ public class PointService {
     public Point save(Point point) {
         return pointRepository.save(point);
     }
+
+    public List<Point> findAll() {
+        return pointRepository.findAll();
+    }
+
+    public Point findById(Integer id) {
+        return pointRepository.findById(id);
+    }
+
 }

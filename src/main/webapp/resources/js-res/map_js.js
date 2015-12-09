@@ -6,22 +6,6 @@ function initMap() {
         center: myLatLng,
         zoom: 8
     });
-    var contentString = 'Munich';
-
-    var infowindow = new google.maps.InfoWindow({
-        content: contentString
-    });
-
-    var marker = new google.maps.Marker({
-        position: myLatLng,
-        map: map,
-        label: contentString
-    });
-
-    marker.addListener('click', function () {
-        infowindow.open(map, marker);
-    });
-
 }
 
 function addPoint(lat, long, description) {

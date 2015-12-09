@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URLEncoder;
+import java.util.List;
 
 @Controller
 @PropertySource("classpath:settings.txt")
@@ -40,12 +42,14 @@ public class MapController {
     @RequestMapping(value = "/mapgoogle", method = RequestMethod.GET)
     public String start(ModelMap model) {
         model.addAttribute("apiKey", environment.getProperty("mapKey"));
+        List<Point> points = pointService.findAll();
+        model.addAttribute("points", points);
         return "map";
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object map(@RequestParam String pointName, @RequestParam String pointDesc) throws IOException {
+    public Object map(ModelMap model, @RequestParam String pointName, @RequestParam String pointDesc) throws IOException {
         requestToGoogleMapApi(pointDesc);
         Point newPoint = requestToGoogleMapApi(pointDesc);
         newPoint.setDescription(pointName);
