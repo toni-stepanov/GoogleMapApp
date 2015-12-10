@@ -49,7 +49,7 @@ public class MapController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Object map(ModelMap model, @RequestParam String pointName, @RequestParam String pointDesc) throws IOException {
+    public Object map(@RequestParam String pointName, @RequestParam String pointDesc) throws IOException {
         requestToGoogleMapApi(pointDesc);
         Point newPoint = requestToGoogleMapApi(pointDesc);
         newPoint.setDescription(pointName);

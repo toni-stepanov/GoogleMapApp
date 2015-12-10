@@ -24,7 +24,6 @@ public class PointDetailsController {
         Point point = pointService.findById(id);
         model.addAttribute("point", point);
         model.addAttribute("apiKey", environment.getProperty("mapKey"));
-        model.addAttribute("message", "!!!!");
         return "point";
     }
 
